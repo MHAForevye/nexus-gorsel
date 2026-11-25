@@ -11,15 +11,15 @@
   --bg:#070b11;--bg2:#0b111a;--panel:#0f1722;--panel2:#141e2c;--line:#1f2c3e;--line2:#2a3a50;
   --tx:#eaf1f9;--mut:#8697ad;--ac:#38e0c2;--ac2:#5b8cff;--ac3:#a78bfa;
   --warn:#ffb84d;--bad:#ff6b7a;--ok:#46e38a;--shadow:0 10px 40px rgba(0,0,0,.45);
-  --glow:rgba(56,224,194,.14);
+  --glow:rgba(56,224,194,.14);color-scheme:dark;
 }
 [data-theme=light]{
   --bg:#f3f6fb;--bg2:#eaf0f7;--panel:#ffffff;--panel2:#f1f5fa;--line:#dbe4ef;--line2:#c7d4e4;
   --tx:#0d1827;--mut:#5a6d85;--ac:#0fb5a0;--ac2:#3d6bff;--ac3:#7c5cf0;
-  --warn:#d98200;--bad:#e0364a;--ok:#13a85a;--shadow:0 10px 30px rgba(30,60,100,.12);--glow:rgba(15,181,160,.12);
+  --warn:#d98200;--bad:#e0364a;--ok:#13a85a;--shadow:0 10px 30px rgba(30,60,100,.12);--glow:rgba(15,181,160,.12);color-scheme:light;
 }
 *{box-sizing:border-box}
-html,body{margin:0}
+html,body{margin:0;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{background:var(--bg);color:var(--tx);font:15px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
 .bgfx{position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:
@@ -32,7 +32,7 @@ svg.i.lg{width:22px;height:22px}
 button{font:inherit;color:inherit}
 /* top */
 .top{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 72%,transparent);border-bottom:1px solid var(--line)}
-.top .in{max-width:1180px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px}
+.top .in{max-width:1320px;margin:0 auto;padding:0 20px;height:62px;display:flex;align-items:center;gap:14px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.3px}
 .brand small{font-weight:500;color:var(--mut);font-size:12px;margin-left:2px}
 .sp{flex:1}
@@ -42,15 +42,14 @@ button{font:inherit;color:inherit}
 .iconbtn:hover{color:var(--tx);border-color:var(--line2)}
 #prog{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2));transition:width .25s,opacity .3s}
 /* layout */
-.wrap{max-width:1180px;margin:0 auto;padding:26px 20px 120px}
-.layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:22px;align-items:start}
-@media(max-width:940px){.layout{grid-template-columns:1fr}}
-.side{position:sticky;top:76px;max-height:calc(100vh - 96px);overflow:auto;padding-right:2px;scrollbar-width:thin}
-@media(max-width:940px){.side{position:static;max-height:none}}
+.wrap{max-width:1320px;margin:0 auto;padding:22px 20px 120px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:22px;align-items:start}
+.main{min-width:0}
+.pstrip,.sheethead,#fab,#sheetBg{display:none}
 /* hero */
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:center;padding:8px 0 6px}
 @media(max-width:760px){.hero{grid-template-columns:1fr}.hero .art{order:-1;max-width:420px;margin:0 auto}}
-.hero h1{font-size:clamp(28px,4.4vw,44px);line-height:1.08;letter-spacing:-1.2px;margin:0 0 12px;font-weight:800}
+.hero h1{font-size:clamp(26px,3.6vw,40px);line-height:1.08;letter-spacing:-1.2px;margin:0 0 12px;font-weight:800}
 .hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--ac),var(--ac2) 60%,var(--ac3));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{color:var(--mut);margin:0 0 20px;font-size:16px;max-width:520px}
 .trust{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
@@ -151,7 +150,7 @@ input[type=color]{width:44px;height:36px;padding:2px;border-radius:9px;border:1p
 .btn:hover{filter:brightness(1.08)}
 .btn[disabled]{opacity:.55;cursor:default}
 .btn.gh{background:var(--panel2);color:var(--tx);border:1px solid var(--line);font-weight:600;padding:10px 12px}
-@media(max-width:560px){#bar .l2{display:none}.btn span{display:none}}
+
 /* modal */
 #modal{position:fixed;inset:0;z-index:40;background:rgba(3,6,10,.78);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:18px}
 #modal.on{display:flex}
@@ -176,6 +175,51 @@ input[type=color]{width:44px;height:36px;padding:2px;border-radius:9px;border:1p
 #toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(16px);background:var(--panel);border:1px solid var(--line2);padding:10px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.2s;font-size:14px;max-width:90vw;z-index:60;box-shadow:var(--shadow)}
 #toast.on{opacity:1;transform:translateX(-50%)}
 footer{color:var(--mut);font-size:12.5px;margin-top:28px;line-height:1.7;max-width:760px}
+/* ===== masaüstü: ekrana oturan uygulama kabuğu ===== */
+@media(min-width:941px){
+  html,body{height:100%}
+  body{overflow:hidden}
+  .wrap{height:calc(100vh - 63px);height:calc(100dvh - 63px);padding:16px 20px 0}
+  .layout{height:100%;align-items:stretch}
+  .main{overflow-y:auto;min-height:0;padding:2px 10px 130px 2px;scrollbar-width:thin}
+  .side{overflow-y:auto;min-height:0;padding:2px 6px 24px 2px;scrollbar-width:thin}
+  #bar{left:calc(50% - 186px);width:min(860px,calc(100vw - 460px))}
+}
+@media(min-width:941px) and (max-height:780px){
+  .hero p{margin-bottom:14px}.hero h1{margin-bottom:8px}
+  .drop{padding:20px 16px}.drop .ic{width:46px;height:46px;margin-bottom:8px}
+  .feat{margin-top:16px}
+}
+/* ===== mobil / dar ekran: alt çekmece ayarlar ===== */
+@media(max-width:940px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .wrap{padding:14px 16px 120px}
+  .top .in{padding:0 14px;height:58px}
+  .side{position:fixed;left:0;right:0;bottom:0;height:88vh;height:88dvh;z-index:36;background:var(--bg);border-radius:22px 22px 0 0;border:1px solid var(--line2);border-bottom:0;padding:0 14px 40px;overflow-y:auto;overscroll-behavior:contain;transform:translateY(105%);transition:transform .28s ease;box-shadow:0 -20px 60px rgba(0,0,0,.5)}
+  body.sheet{overflow:hidden}
+  body.sheet .side{transform:none}
+  #sheetBg{display:block;position:fixed;inset:0;z-index:35;background:rgba(3,6,10,.62);opacity:0;pointer-events:none;transition:opacity .25s}
+  body.sheet #sheetBg{opacity:1;pointer-events:auto}
+  .sheethead{display:flex;position:sticky;top:0;z-index:3;background:var(--bg);align-items:center;gap:10px;padding:16px 2px 12px;font-weight:700;font-size:16px}
+  .sheethead::before{content:"";position:absolute;top:6px;left:50%;width:40px;height:4px;margin-left:-20px;border-radius:9px;background:var(--line2)}
+  .sheethead .sp{flex:1}
+  .pstrip{display:flex;gap:8px;overflow-x:auto;margin:0 -16px 14px;padding:2px 16px 6px;scrollbar-width:none}
+  .pstrip::-webkit-scrollbar{display:none}
+  .pstrip .chip{flex:none;width:158px}
+  #fab{display:flex;position:fixed;right:14px;bottom:14px;z-index:14;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line2);border-radius:99px;padding:12px 18px;font-weight:600;box-shadow:var(--shadow);cursor:pointer}
+  #fab svg{color:var(--ac)}
+  #fab.up{bottom:98px}
+  body.sheet #fab,body.sheet #bar{display:none!important}
+  input,select,textarea{font-size:16px!important}
+  .hero .art{max-height:200px;display:flex;justify-content:center}
+  .hero .art svg{max-height:200px;width:auto}
+  .hero p{font-size:15px}
+  #bar .l2{display:none}
+  #bar .l1{font-size:13px}
+  #bar{bottom:10px;padding:10px 10px 10px 14px}
+  .chip,.seg button,.ac button{min-height:40px}
+  .gl{margin-top:10px}
+}
 </style>
 </head>
 <body>
@@ -227,7 +271,8 @@ footer{color:var(--mut);font-size:12.5px;margin-top:28px;line-height:1.7;max-wid
 
 <main class="wrap">
   <div class="layout">
-    <section>
+    <section class="main">
+      <div class="pstrip" id="pstrip"></div>
       <div id="hero">
         <div class="hero">
           <div>
@@ -309,6 +354,7 @@ footer{color:var(--mut);font-size:12.5px;margin-top:28px;line-height:1.7;max-wid
     </section>
 
     <aside class="side" id="side">
+      <div class="sheethead"><svg class="i"><use href="#i-sl"/></svg>Ayarlar<span class="sp"></span><button class="btn" id="sheetOk" style="padding:8px 16px">Tamam</button></div>
       <details class="sec" open>
         <summary><span class="si"><svg class="i"><use href="#i-spark"/></svg></span>Hazır ayarlar<svg class="i ch"><use href="#i-ch"/></svg></summary>
         <div class="bd"><div class="chips" id="presets"></div></div>
@@ -391,6 +437,8 @@ footer{color:var(--mut);font-size:12.5px;margin-top:28px;line-height:1.7;max-wid
   </div>
 </main>
 
+<div id="sheetBg"></div>
+<button id="fab"><svg class="i"><use href="#i-sl"/></svg>Ayarlar</button>
 <div id="bar">
   <div class="tt"><div class="l1" id="l1"></div><div class="l2" id="l2"></div><div class="meter"><i id="mt"></i></div></div>
   <button class="btn gh" id="clearBtn" title="Hepsini temizle"><svg class="i"><use href="#i-trash"/></svg></button>
@@ -628,17 +676,20 @@ function applyTheme(){
   document.documentElement.setAttribute('data-theme',S.theme);
   $('#themeIc').firstChild.setAttribute('href',S.theme==='dark'?'#i-sun':'#i-moon');
 }
+function mkPreset(pr){
+  var b=mk('button','chip'+(S.preset===pr.id?' sel':''));
+  b.appendChild(mk('b',null,pr.t));b.appendChild(mk('small',null,pr.d));
+  b.onclick=function(){
+    S.format='orig';S.quality=80;S.target=0;S.mode='none';S.side=1920;S.crop='none';
+    for(var k in pr.v)S[k]=pr.v[k];
+    S.preset=pr.id;persist();sync();schedule();
+  };
+  return b;
+}
 function renderPresets(){
-  var p=$('#presets');p.textContent='';
-  PRESETS.forEach(function(pr){
-    var b=mk('button','chip'+(S.preset===pr.id?' sel':''));
-    b.appendChild(mk('b',null,pr.t));b.appendChild(mk('small',null,pr.d));
-    b.onclick=function(){
-      S.format='orig';S.quality=80;S.target=0;S.mode='none';S.side=1920;S.crop='none';
-      for(var k in pr.v)S[k]=pr.v[k];
-      S.preset=pr.id;persist();sync();schedule();
-    };
-    p.appendChild(b);
+  ['#presets','#pstrip'].forEach(function(s){
+    var p=$(s);p.textContent='';
+    PRESETS.forEach(function(pr){p.appendChild(mkPreset(pr))});
   });
 }
 function sync(){
@@ -759,6 +810,7 @@ function render(){
   var busy=items.filter(function(i){return i.status==='work'}).length,pg=$('#prog');
   if(items.length&&busy){pg.style.opacity=1;pg.style.width=((items.length-busy)/items.length*100)+'%'}
   else{pg.style.width='100%';setTimeout(function(){pg.style.opacity=0;pg.style.width='0'},350)}
+  $('#fab').classList.toggle('up',done.length>0);
   if(!done.length){bar.style.display='none';return}
   bar.style.display='flex';
   var a=0,b=0;done.forEach(function(i){a+=i.orig;b+=i.out.size});
@@ -856,8 +908,13 @@ document.addEventListener('paste',function(e){
   var fs=[];if(e.clipboardData&&e.clipboardData.items)for(var i=0;i<e.clipboardData.items.length;i++){var it=e.clipboardData.items[i];if(it.kind==='file'){var f=it.getAsFile();if(f)fs.push(f)}}
   if(fs.length)addFiles(fs);
 });
-if(window.matchMedia&&window.matchMedia('(max-width:940px)').matches){$$('#side .sec').forEach(function(d,i){if(i>0)d.removeAttribute('open')})}
+if(window.matchMedia&&window.matchMedia('(max-width:940px)').matches){$$('#side .sec').forEach(function(d,i){if(i>1)d.removeAttribute('open')})}
 
+function sheet(on){document.body.classList.toggle('sheet',on)}
+$('#fab').onclick=function(){sheet(true)};
+$('#sheetBg').onclick=function(){sheet(false)};
+$('#sheetOk').onclick=function(){sheet(false)};
+document.addEventListener('keydown',function(e){if(e.key==='Escape')sheet(false)});
 applyTheme();sync();renderLT();render();
 })();
 </script>
